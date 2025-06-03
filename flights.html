@@ -5,17 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flights - Everywhere</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
 </head>
 <body>
   <header class="flights-hero">
     <nav>
-      <h1 class="logo">Everywhere.</h1>
+      <div class="logo-section">
+        <img src="assets/logo.png" alt="Logo" class="logo-img" />
+        <span class="logo-text">Everywhere.</span>
+      </div>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="flights.html">Flights</a></li>
+        <li><a href="flights.html" class="active">Flights</a></li>
         <li><a href="#">Trips</a></li>
-        <li><a href="#">Alerts</a></li>
+        
       </ul>
     </nav>
     <div class="flights-hero-text">
@@ -30,7 +34,7 @@
       <input type="text" placeholder="From" />
       <input type="text" placeholder="To" />
       <input type="date" />
-      <button type="submit">Search</button>
+      <button type="submit" class="btn yellow">Search</button>
     </form>
   </section>
 
