@@ -1,0 +1,226 @@
+:root {
+  --dark: rgba(0, 0, 0, 0.7);
+  --white: #ffffff;
+  --yellow: #ffdd57;
+  --light-text: #f1f1f1;
+  --font: 'Poppins', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: var(--font);
+}
+
+.site-footer {
+  background-color: #0d0d0d;
+  color: #ccc;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  margin-top: 0;
+  border-top: 1px solid #333;
+}
+
+
+/* Hero background */
+.hero {
+  background: url("assets/bg.png") no-repeat center center/cover;
+  height: 100vh;
+  position: relative;
+  color: var(--light-text);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 50% black overlay */
+  z-index: 0;
+}
+
+
+/* Navbar */
+nav {
+  background-color: var(--dark);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 30px;
+  height: 30px;
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 500;
+}
+.hero-content,
+nav {
+  position: relative;
+  z-index: 1;
+}
+/* Hero content */
+.hero-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  line-height: 1.3;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.buttons {
+  margin-bottom: 25px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.btn.yellow {
+  background-color: var(--yellow);
+  color: black;
+}
+
+.btn.white {
+  background-color: white;
+  color: black;
+}
+
+.footer-note {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: var(--light-text);
+}
+/* Flights html CSS */
+
+/* Flights Hero Section */
+.flights-hero {
+  background: url("assets/bg.png") no-repeat center center/cover;
+  height: 60vh;
+  position: relative;
+  color: rgb(255, 255, 255);
+}
+.flights-hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust darkness here */
+  z-index: 0;
+}
+
+
+.flights-hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hero-content, nav {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Search section */
+.search-section {
+  background-color: #454444;
+  padding: 40px;
+  text-align: center;
+  color:white;
+}
+
+.search-section form input,
+.search-section form button {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: none;
+}
+
+/* Destinations */
+.destinations {
+  padding: 40px;
+  margin-bottom: 0;
+  text-align: center;
+  background-color: rgb(50, 47, 47);
+  color: #f1f1f1;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 250px;
+  background: rgb(71, 71, 71);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card h4 {
+  margin: 15px 0 5px;
+}
+
+.card p {
+  padding: 0 15px 15px;
+  font-size: 0.9rem;
+}
