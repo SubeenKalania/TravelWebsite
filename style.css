@@ -197,12 +197,218 @@ nav {
 }
 
 .search-section form input,
-.search-section form button {
+.search-section form button,
+.search-section form select {
   padding: 10px 15px;
   margin: 5px;
   font-size: 1rem;
   border-radius: 20px;
   border: none;
+}
+
+.flight-form {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 18px 18px;
+  background: #3a3a3a;
+  border: 1px solid #444;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.search-options {
+  display: flex;
+  flex-wrap: nowrap; /* keep in one line */
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.search-options > * { flex: 0 0 auto; white-space: nowrap; }
+
+@media (max-width: 860px) {
+  .search-options { justify-content: flex-start; overflow-x: auto; padding-bottom: 6px; }
+}
+.trip-type label {
+  background: #3a3a3a;
+  color: #eee;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.trip-type input { display: none; }
+.trip-type input:checked + span { color: var(--yellow); }
+
+.passenger-control, .cabin-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #3a3a3a;
+  padding: 6px 10px;
+  border-radius: 16px;
+}
+.passenger-control .stepper {
+  display: inline-flex;
+  align-items: center;
+  background: #2f2f2f;
+  border-radius: 14px;
+}
+.passenger-control .stepper button {
+  background: transparent;
+  color: #eee;
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+.passenger-control .stepper #pax-dec,
+.passenger-control .stepper #pax-inc { font-size: 0; }
+.passenger-control .stepper #pax-dec::after { content: '−'; font-size: 1.1rem; color: #eee; }
+.passenger-control .stepper #pax-inc::after { content: '+'; font-size: 1.1rem; color: #eee; }
+.passenger-control .stepper input {
+  width: 48px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.cabin-control { position: relative; }
+.cabin-control select {
+  background-color: #2f2f2f;
+  color: #fff;
+  border-radius: 24px;
+  border: 1px solid #bfbfbf;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 40px; /* visual height */
+  line-height: normal; /* let browser handle baseline */
+  padding: 8px 38px 8px 14px; /* symmetric vertical padding centers text */
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23cfcfcf' d='M6 8L0 0h12z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center; /* move arrow a bit left */
+  background-size: 10px 8px;
+}
+.cabin-control select:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
+}
+.cabin-control::after { content: none !important; }
+select::-ms-expand { display: none; }
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.routes-row {
+  grid-template-columns: 1fr 56px 1fr; /* left | swap | right */
+  align-items: center;
+  gap: 14px;
+}
+.dates-row { grid-template-columns: 1fr 56px 1fr auto; }
+
+.swap-btn {
+  grid-column: 2;
+  justify-self: center;
+  align-self: center;
+  background: #2b2b2b;
+  color: #ddd;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  border: 1px solid #4a4a4a;
+  box-shadow: 0 0 0 3px #2b2b2b;
+  cursor: pointer;
+}
+.dates-row .input-with-icon:nth-child(1) { grid-column: 1; }
+.dates-row .input-with-icon:nth-child(2) { grid-column: 3; }
+.dates-row .submit-btn { grid-column: 4; }
+
+/* New: field boxes to match reference layout */
+.field,
+.input-with-icon {
+  position: relative;
+  background: #2b2b2b;
+  border: 1px solid #3a3a3a;
+  border-radius: 16px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding-left: 44px; /* icon space */
+}
+
+.field input,
+.input-with-icon input,
+.input-with-icon .flatpickr-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #eee;
+  font-size: 1rem;
+  outline: none;
+}
+
+.field .field-icon,
+.input-with-icon .calendar-icon {
+  position: absolute;
+  left: 14px;
+  background: transparent;
+  border: none;
+  color: #bbb;
+  pointer-events: none;
+}
+
+.input-with-icon .calendar-icon {
+  pointer-events: auto; /* allow click to open calendar */
+  font-size: 0; /* hide possibly garbled glyphs */
+}
+.input-with-icon .calendar-icon::after {
+  content: '📅';
+  font-size: 1.05rem;
+  color: #bbb;
+}
+
+.field .field-icon { font-size: 0; }
+.from-field .field-icon::after { content: '◉'; font-size: 0.95rem; color: #bbb; }
+.to-field .field-icon::after { content: '📍'; font-size: 1.05rem; color: #bbb; }
+}
+
+.field:focus-within,
+.input-with-icon:focus-within {
+  border-color: #3b82f6; /* blue focus */
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.routes-row { position: relative; }
+.swap-btn {
+  /* use grid centering; no absolute positioning */
+  grid-column: 2;
+  justify-self: center;
+  align-self: center;
+}
+
+.swap-btn:hover {
+  border-color: #6a6a6a;
+}
+
+/* Make autocomplete wrapper fill field width */
+.autocomplete {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.suggestions { left: 0; right: 0; }
+
+/* Placeholder color on dark */
+::placeholder {
+  color: #cfcfcf;
+  opacity: 0.8;
 }
 
 /* Destinations */
@@ -325,3 +531,266 @@ nav {
 .gallery-images img:hover {
   opacity: 0.8;
 }
+
+/* Flights: inputs with icon */
+.input-with-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.input-with-icon input#date-range {
+  padding-right: 36px; /* room for icon */
+}
+
+.calendar-icon {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+/* Flights: autocomplete dropdown */
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  color: #222;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  overflow: hidden;
+  margin-top: 6px;
+  z-index: 50;
+  display: none;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+  background: #f2f2f2;
+}
+
+/* Flight Results */
+.results-section {
+  padding: 20px 20px 60px;
+  background: #1f1f1f;
+  color: #eee;
+}
+.results-section h3 {
+  font-size: 1.6rem;
+  margin: 10px 0 20px;
+  color: var(--yellow);
+  text-align: center;
+}
+.results-badge {
+  font-size: 0.85rem;
+  color: #ccc;
+  background: #333;
+  border: 1px solid #444;
+  border-radius: 999px;
+  padding: 3px 8px;
+  margin-left: 8px;
+}
+.results-list {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.results-empty {
+  text-align: center;
+  color: #aaa;
+  padding: 24px 12px;
+  border: 1px dashed #444;
+  border-radius: 12px;
+}
+.flight-card {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 14px;
+  align-items: center;
+}
+.airline-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: #0f4c81;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.flight-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.flight-times {
+  font-weight: 600;
+}
+.flight-subline {
+  color: #bbb;
+  font-size: 0.92rem;
+}
+.flight-meta {
+  display: flex;
+  gap: 16px;
+  color: #ddd;
+  font-size: 0.95rem;
+}
+.meta-chip {
+  color: #ddd;
+}
+.co2-chip {
+  color: #9ad47f;
+}
+.price-col {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.price {
+  color: #adf58d;
+  font-weight: 700;
+}
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: #ddd;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.segments {
+  margin-top: 8px;
+  border-top: 1px solid #3a3a3a;
+  padding-top: 8px;
+  display: none;
+}
+.segments.open {
+  display: block;
+}
+.segment-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 8px;
+  padding: 8px 0;
+  color: #ccc;
+}
+.layover-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* ---------- Form polish overrides (end of file for cascade) ---------- */
+.form-card {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 18px 18px;
+  background: #3a3a3a;
+  border: 1px solid #444;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.search-options { width: 100%; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+
+.routes-row { grid-template-columns: 1fr 56px 1fr !important; align-items: center; gap: 14px; position: relative; }
+.swap-btn { font-size: 0; position: static !important; grid-column: 2; justify-self: center; align-self: center; width: 56px; height: 56px; border-radius: 50%; background: #2b2b2b; color: #ddd; border: 1px solid #4a4a4a; box-shadow: 0 0 0 3px #2b2b2b; }
+.swap-btn::after { content: '⇄'; font-size: 1.1rem; color: #ddd; }
+
+/* Ensure only the pseudo-element renders (no duplicated text) */
+.routes-row .swap-btn { font-size: 0 !important; color: transparent !important; line-height: 0 !important; }
+.routes-row .swap-btn::after { content: '⇄'; font-size: 1.15rem; color: #ddd; line-height: 1; }
+
+.dates-row { grid-template-columns: 1fr 56px 1fr auto !important; gap: 14px; }
+.dates-row .submit-btn { height: 56px; border-radius: 28px; padding: 0 22px; }
+
+.field, .input-with-icon { border-radius: 16px !important; height: 56px !important; }
+
+.input-with-icon .calendar-icon { font-size: 0; }
+.input-with-icon .calendar-icon::after { content: '📅' !important; font-size: 1.05rem; color: #bbb; }
+.field .field-icon { font-size: 0 !important; }
+.from-field .field-icon::after { content: '◉' !important; font-size: 0.95rem; color: #bbb; }
+.to-field .field-icon::after { content: '📍' !important; font-size: 1.05rem; color: #bbb; }
+
+/* Calendar icon alignment inside date inputs */
+.dates-row .input-with-icon {
+  padding-left: 14px !important;  /* normal text inset */
+  padding-right: 44px !important; /* room for right icon */
+}
+.dates-row .input-with-icon .calendar-icon {
+  position: absolute !important;
+  left: auto !important;
+  right: 14px !important;
+  top: 50% !important;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  font-size: 0 !important; /* hide any inner text */
+  background: transparent;
+  border: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23bbb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+}
+.dates-row .input-with-icon .calendar-icon::after {
+  content: '' !important;
+}
+
+/* (Reverted) removed combined date field styling */
+
+/* Stepper visibility improvements */
+.passenger-control .stepper { gap: 8px; padding: 4px 6px; }
+.passenger-control .stepper button { width: 36px; height: 36px; font-size: 1.1rem; }
+.passenger-control .stepper #pax-dec::after { content: '−' !important; }
+.passenger-control .stepper #pax-inc::after { content: '+' !important; }
+.passenger-control .stepper input { font-size: 1.15rem; font-weight: 600; line-height: 1; outline: none; }
+.passenger-control .stepper input::-webkit-outer-spin-button,
+.passenger-control .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.passenger-control .stepper input[type=number] { -moz-appearance: textfield; }
+
+/* Autocomplete dropdown: ensure it appears above and is readable on dark */
+.field { overflow: visible; }
+.autocomplete { position: relative !important; display: block; width: 100%; }
+.suggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #2b2b2b;
+  color: #f0f0f0;
+  border: 1px solid #444;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  z-index: 9999; /* sit above other UI */
+}
+.suggestion-item { padding: 10px 12px; }
+.suggestion-item:hover, .suggestion-item.active { background: #3a3a3a; }

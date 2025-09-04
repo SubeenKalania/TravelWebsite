@@ -6,6 +6,8 @@
   <title>Flights - Everywhere</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  
 
 </head>
 <body>
@@ -18,7 +20,7 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="flights.html" class="active">Flights</a></li>
-        <li><a href="#">Trips</a></li>
+        <li><a href="explore.html">Explore</a></li>
         
       </ul>
     </nav>
@@ -30,13 +32,64 @@
 
   <section class="search-section">
     <h3>Search Flights</h3>
-    <form>
-      <input type="text" placeholder="From" />
-      <input type="text" placeholder="To" />
-      <input type="date" />
-      <button type="submit" class="btn yellow">Search</button>
+    <form class="flight-form" autocomplete="off">
+      <div class="search-options">
+        <div class="trip-type" role="radiogroup" aria-label="Trip type">
+          <label>
+            <input type="radio" name="trip" value="round" id="trip-round" checked />
+            <span>Round trip</span>
+          </label>
+          <label>
+            <input type="radio" name="trip" value="oneway" id="trip-oneway" />
+            <span>One way</span>
+          </label>
+        </div>
+        <div class="passenger-control">
+          <span>Passengers</span>
+          <div class="stepper">
+            <button type="button" id="pax-dec" aria-label="Decrease passengers">−</button>
+            <input type="number" id="passengers" value="1" min="1" max="9" />
+            <button type="button" id="pax-inc" aria-label="Increase passengers">＋</button>
+          </div>
+        </div>
+        <div class="cabin-control">
+          <label for="cabin">Cabin</label>
+          <select id="cabin">
+            <option value="ECONOMY" selected>Economy</option>
+            <option value="PREMIUM_ECONOMY">Premium Economy</option>
+            <option value="BUSINESS">Business</option>
+            <option value="FIRST">First</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="input-row routes-row">
+        <div class="field from-field">
+          <span class="field-icon" aria-hidden="true">●</span>
+          <input type="text" id="from" placeholder="From" autocomplete="off" />
+        </div>
+        <button type="button" id="swap-btn" class="swap-btn" aria-label="Swap origin and destination">⇄</button>
+        <div class="field to-field">
+          <span class="field-icon" aria-hidden="true">📍</span>
+          <input type="text" id="to" placeholder="To" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="input-row dates-row">
+        <div class="input-with-icon">
+          <input type="text" id="depart-date" placeholder="Depart date" autocomplete="off" />
+          <button type="button" id="depart-icon" class="calendar-icon" aria-label="Open depart calendar"></button>
+        </div>
+        <div class="input-with-icon">
+          <input type="text" id="return-date" placeholder="Return date" autocomplete="off" />
+          <button type="button" id="return-icon" class="calendar-icon" aria-label="Open return calendar"></button>
+        </div>
+        <button type="submit" class="btn yellow submit-btn">Search</button>
+      </div>
     </form>
   </section>
+
+  
 
   <section class="destinations">
     <h3>Popular Destinations</h3>
@@ -58,9 +111,21 @@
       </div>
     </div>
   </section>
+
+  <section class="results-section" aria-live="polite">
+    <h3>Top Flights <span id="results-status" class="results-badge"></span></h3>
+    <div id="results-list" class="results-list">
+      <div class="results-empty">Use the form above to search flights.</div>
+    </div>
+  </section>
   <footer class="site-footer">
   <p>&copy; 2025 Everywhere. All rights reserved.</p>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="flights.js"></script>
 
 </body>
 </html>
+
+
+
